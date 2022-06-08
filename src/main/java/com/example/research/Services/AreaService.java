@@ -2,9 +2,8 @@ package com.example.research.Services;
 
 import com.example.research.Entities.Area;
 import com.example.research.Repositories.AreaRepository;
-import com.example.research.Validation.Context;
-import com.example.research.Validation.Quality;
-import com.example.research.Validation.ValidQuality;
+import com.example.research.Content.Validation.Context;
+import com.example.research.Content.Validation.ValidQuality;
 import lombok.RequiredArgsConstructor;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;

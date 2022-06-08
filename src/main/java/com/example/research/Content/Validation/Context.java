@@ -1,4 +1,4 @@
-package com.example.research.Validation;
+package com.example.research.Content.Validation;
 
 import com.example.research.Entities.Area;
 import lombok.AllArgsConstructor;
