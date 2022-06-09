@@ -9,7 +9,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class GalConnect {
-    private Double value;           //g
-    private Set<String> name;       //m
+public class ConConnect {
+    private Double value;
+    private Set<String> name;
 }

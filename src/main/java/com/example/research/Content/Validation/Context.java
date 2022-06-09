@@ -46,4 +46,17 @@ public class Context {
         }
         return null;
     }
+
+    public Double get(String sub, String prop){
+        int index = owners.indexOf(sub);
+        ValidQuality quality = getQualityByName(prop);
+        return quality.values.get(index);
+    };
+
+    public ValidQuality getQualityByName(String name){
+        for (ValidQuality quality : qualities) {
+            if (quality.name.equals(name)) return quality;
+        }
+        return null;
+    }
 }
