@@ -24,20 +24,20 @@ public class Alg {
         do {
             Set<VolConnect> connects = counter.stream().filter(c -> !eq(c.getValue(), 0d)).collect(Collectors.toSet());
             Volume vol = new Volume(connects);
-            FormalConcept fc = getFormalConcept(vol, subs, props);
+            FormalConcept fc = getFormalConcept(context, vol, subs, props);
             if (fc != null) result.add(fc);
         } while (increaseCounter(counter));
         return result;
     }
 
-    public FormalConcept getFormalConcept(Volume volume, Set<String> subs, Set<Set<String>> props){
+    public FormalConcept getFormalConcept(Context context, Volume volume, Set<String> subs, Set<Set<String>> props){
         Contents contents = new Contents();
         props.forEach(prop -> {
-            contents.add(new ConConnect(aA(volume, subs, prop), prop));
+            contents.add(new ConConnect(aA(context, volume, subs, prop), prop));
         });
         Volume newVolume = new Volume();
         subs.forEach(sub -> {
-            newVolume.add(new VolConnect(aB(contents, sub, props), sub));
+            newVolume.add(new VolConnect(aB(context, contents, sub, props), sub));
         });
         if (volume.equals(newVolume))
         return new FormalConcept(volume, contents);
@@ -56,24 +56,16 @@ public class Alg {
         return context.get(sub, prop.stream().reduce((s1, s2)->s1).orElse(""));//todo String -> Set<String> -> ArList
     }
 
-    public Double aA(Volume vol, Set<String> subs, Set<String> prop){
+    public Double aA(Context context, Volume vol, Set<String> subs, Set<String> prop){
         return subs.stream()
-                .map(sub -> {
-                    VolConnect connect = vol.get(sub);
-                    if (connect == null) return 0d;
-                    else return connect.getValue();
-                })
+                .map(sub -> aAInternal(context, vol, sub, prop))
                 .reduce(this::aMaxim)
                 .orElse(null);
     }
 
-    public Double aB(Contents con, String sub, Set<Set<String>> props){
+    public Double aB(Context context, Contents con, String sub, Set<Set<String>> props){
         return props.stream()
-                .map(prop -> {
-                    ConConnect connect = con.get(prop);
-                    if (connect == null) return 0d;
-                    else return connect.getValue();
-                })
+                .map(prop -> aBInternal(context, con, sub, prop))
                 .reduce(this::aMaxim)
                 .orElse(null);
     }
