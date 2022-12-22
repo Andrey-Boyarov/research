@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 public class Concept {
     /**
      * Objects - content
@@ -29,5 +28,8 @@ public class Concept {
      */
     private List<Volume> volume;
 
-
+    @Override
+    public String toString() {
+        return "\nConcept{" + content + ", " +  volume + "}\n";
+    }
 }

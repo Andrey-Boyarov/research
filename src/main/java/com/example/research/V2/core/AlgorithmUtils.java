@@ -16,9 +16,15 @@ public class AlgorithmUtils {
         do {
             ++iter;
             Concept fc = getConceptV(k, new ArrayList<>(counter));
-            if (fc != null) result.add(fc);
+            if (fc != null) {
+                fc.setVolume(counter.stream().map(Volume::copy).collect(Collectors.toList()));
+                result.add(fc);
+            }
             if (iter % 1000000 == 0) System.out.println(iter);
+//            System.out.println(counter);
         } while (increaseCounterV(counter));
+        result.remove(0);
+        result.remove(result.size() - 1);
         return result;
     }
 
@@ -31,7 +37,11 @@ public class AlgorithmUtils {
         context.getG().forEach(sub -> {
             newVolumes.add(new Volume(sub, operationB(context, contents, sub)));
         });
-        if (volume.equals(newVolumes)) {
+        System.out.print(1);
+        System.out.println(volume);
+        System.out.print(2);
+        System.out.println(newVolumes);
+        if (equalListsOfT(volume, newVolumes)) {
             Concept concept = new Concept(contents, volume);
             System.out.printf("Concept received: %s%n", concept);
             return concept;
@@ -115,9 +125,10 @@ public class AlgorithmUtils {
     private boolean increaseCounterV(List<Volume> counter){
         int i = 0;
         while (true){
+            counter = new ArrayList<>(counter);
             counter.get(i).setValue(counter.get(i).getValue() + 0.1);
             if (counter.get(i).getValue() > 1d) {
-                counter.get(i).setValue(0d);
+                counter.get(i).setValue(new Double(0d));
                 i++;
             } else {
                 break;
@@ -130,6 +141,7 @@ public class AlgorithmUtils {
     private boolean increaseCounterC(List<Content> counter){
         int i = 0;
         while (true){
+            counter = counter.stream().map(Content::copy).collect(Collectors.toList());
             counter.get(i).setValue(counter.get(i).getValue() + 0.1);
             if (counter.get(i).getValue() > 1d) {
                 counter.get(i).setValue(0d);
@@ -156,9 +168,9 @@ public class AlgorithmUtils {
         return Double.min(1, 1 - a + b);
     }
 
-    private boolean eq(Double a, Double b){ return a - b < 0.01; }
+    private boolean eq(Double a, Double b){ return a - b < 0.1; }
 
-    private <T> boolean equalListsOfT(Collection<T> l1, Collection<T> l2) {
+    private <T extends Comparable<? super T>> boolean equalListsOfT(Collection<T> l1, Collection<T> l2) {
         return l1.stream().sorted().collect(Collectors.toList())
                 .equals(l2.stream().sorted().collect(Collectors.toList()));
     }

@@ -50,9 +50,16 @@ public class TestController {
 //        return result;
 
         K k = new K(
-                Arrays.asList("AP", "DN", "IM", "SR", "KB", "ZG", "TZ", "ZP"),
+                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
                 Arrays.asList("S", "A", "I", "Sp"),
-                new Matrix(healthyValues)
+                new Matrix(new double[][]{{1, 0.4, 0.2, 0},
+                        {1, 0.4, 0.6, 0},
+                        {1, 0.8, 0.8, 0},
+                        {0, 0.8, 0.8, 1},
+//                        {0.2, 0.2, 0.6, 1},
+//                        {1, 0.2, 0, 0.8},
+//                        {1, 0.5, 0.4, 0},
+                        {0.2, 0.6, 0.2, 1}})
         );
         String kString = k.toString();
 
