@@ -1,4 +1,4 @@
-package com.example.research.V2.context;
+package com.example.research.V2.core.context;
 
 import lombok.Getter;
 
@@ -69,6 +69,7 @@ public class Matrix {
         return this;
     }
 
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 
