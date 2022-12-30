@@ -1,6 +1,6 @@
-package com.example.research.V2.core;
+package com.example.research.V2.math.core;
 
-import com.example.research.V2.core.context.K;
+import com.example.research.V2.math.core.context.K;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

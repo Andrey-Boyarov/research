@@ -1,4 +1,4 @@
-package com.example.research.V2.core.context;
+package com.example.research.V2.math.core.context;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Formal context
@@ -67,5 +68,13 @@ public class K {
         }
 
         return result.toString();
+    }
+
+    public K copy() {
+        return new K(
+                this.g.stream().map(String::new).collect(Collectors.toList()),
+                this.m.stream().map(String::new).collect(Collectors.toList()),
+                this.i.copy()
+        );
     }
 }

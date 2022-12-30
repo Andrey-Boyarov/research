@@ -1,4 +1,4 @@
-package com.example.research.V2.core.context;
+package com.example.research.V2.math.core.context;
 
 import lombok.Getter;
 
@@ -83,6 +83,34 @@ public class Matrix {
         }
 
         return result.toString();
+    }
+
+    public Matrix copy() {
+        List<List<Double>> values = this.values.stream().map(
+                list -> list.stream().map(
+                        Double::new
+                ).collect(Collectors.toList())
+        ).collect(Collectors.toList());
+        return new Matrix(values);
+    }
+
+    public void mergeRows(int... indexes) {
+    }
+
+
+    public void mergeCols(int... indexes) {
+        if (indexes.length < 2) return;
+        Arrays.sort(indexes);
+        for (int i = 0; i < rowNum; i++) {
+            for (int j = 1; j < indexes.length; j++) {
+                this.values.get(indexes[0]).set(i, this.values.get(indexes[0]).get(i) + this.values.get(indexes[j]).get(i));
+            }
+            this.values.get(indexes[0]).set(i, this.values.get(indexes[0]).get(i) / indexes.length);
+        }
+        for (int i = indexes.length - 1; i > 0; i--) {
+            this.values.remove(indexes[i]);
+            this.colNum--;
+        }
     }
 
     /**

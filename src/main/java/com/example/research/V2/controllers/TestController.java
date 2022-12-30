@@ -1,8 +1,9 @@
 package com.example.research.V2.controllers;
 
-import com.example.research.V2.core.AlgorithmUtils;
-import com.example.research.V2.core.context.K;
-import com.example.research.V2.core.context.Matrix;
+import com.example.research.V2.math.clustering.ClusteringUtils;
+import com.example.research.V2.math.core.AlgorithmUtils;
+import com.example.research.V2.math.core.context.K;
+import com.example.research.V2.math.core.context.Matrix;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 public class TestController {
 
     private final AlgorithmUtils algorithmUtils;
+    private final ClusteringUtils clusteringUtils;
 
     @GetMapping("/launch")
     public String test() {
@@ -49,25 +51,40 @@ public class TestController {
 //
 //        return result;
 
-        K k = new K(
-                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
-                Arrays.asList("S", "A", "I", "Sp"),
-                new Matrix(new double[][]{{1, 0.4, 0.2, 0},
-                        {1, 0.4, 0.6, 0},
-                        {1, 0.8, 0.8, 0},
-                        {0, 0.8, 0.8, 1},
+//        K k = new K(
+//                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
+//                Arrays.asList("S", "A", "I", "Sp"),
+//                new Matrix(new double[][]{{1, 0.4, 0.2, 0},
+//                        {1, 0.4, 0.6, 0},
+//                        {1, 0.8, 0.8, 0},
+//                        {0, 0.8, 0.8, 1},
 //                        {0.2, 0.2, 0.6, 1},
 //                        {1, 0.2, 0, 0.8},
 //                        {1, 0.5, 0.4, 0},
-                        {0.2, 0.6, 0.2, 1}})
-        );
-        String kString = k.toString();
+//                        {0.2, 0.6, 0.2, 1}})
+//        );
+//        String kString = k.toString();
+//
+//        String vString = k.validate().toString();
+//
+//        String cString = algorithmUtils.getConcepts(k).toString();
+//
+//        return String.format("%S\n%S\n%S", kString, vString, cString);
 
-        String vString = k.validate().toString();
 
-        String cString = algorithmUtils.getConcepts(k).toString();
+        Matrix a = new Matrix(new double[][]{
+                {1, 0.4, 0.2, 0},
+                {1, 0.4, 0.6, 0},
+                {1, 0.8, 0.8, 0},
+                {0, 0.8, 0.8, 1},
+//                        {0.2, 0.2, 0.6, 1},
+//                        {1, 0.2, 0, 0.8},
+//                        {1, 0.5, 0.4, 0},
+                {0.2, 0.6, 0.2, 1}});
 
-        return String.format("%S\n%S\n%S", kString, vString, cString);
+        Matrix b = a.copy();
+        b.mergeCols(1, 3, 2);
+        return String.format("%s\n\n%s", a, b);
     }
 
 

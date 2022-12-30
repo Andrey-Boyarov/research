@@ -1,4 +1,4 @@
-package com.example.research.V2.core;
+package com.example.research.V2.math.core;
 
 import lombok.*;
 
