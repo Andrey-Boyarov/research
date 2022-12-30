@@ -51,40 +51,45 @@ public class TestController {
 //
 //        return result;
 
-//        K k = new K(
-//                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
-//                Arrays.asList("S", "A", "I", "Sp"),
-//                new Matrix(new double[][]{{1, 0.4, 0.2, 0},
-//                        {1, 0.4, 0.6, 0},
-//                        {1, 0.8, 0.8, 0},
-//                        {0, 0.8, 0.8, 1},
+        K k = new K(
+                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
+                Arrays.asList("S", "A", "I", "Sp"),
+                new Matrix(new double[][]{
+                        {1, 0.4, 0.2, 0},
+                        {1, 0.4, 0.6, 0},
+                        {1, 0.8, 0.8, 0},
+                        {0, 0.8, 0.8, 1},
 //                        {0.2, 0.2, 0.6, 1},
 //                        {1, 0.2, 0, 0.8},
 //                        {1, 0.5, 0.4, 0},
-//                        {0.2, 0.6, 0.2, 1}})
-//        );
-//        String kString = k.toString();
-//
+                        {0.2, 0.6, 0.2, 1}})
+        );
+        String kString = k.toString();
+
 //        String vString = k.validate().toString();
-//
+
+        k.mergeObjects(1, 3, 4);
+
+        String cString = k.toString();
+
 //        String cString = algorithmUtils.getConcepts(k).toString();
-//
-//        return String.format("%S\n%S\n%S", kString, vString, cString);
+
+        return String.format("%S\n%S", kString, cString);
 
 
-        Matrix a = new Matrix(new double[][]{
-                {1, 0.4, 0.2, 0},
-                {1, 0.4, 0.6, 0},
-                {1, 0.8, 0.8, 0},
-                {0, 0.8, 0.8, 1},
+//        Matrix a = new Matrix(new double[][]{
+//                {1, 0.4, 0.2, 0},
+//                {1, 0.4, 0.6, 0},
+//                {1, 0.8, 0.8, 0},
+//                {0, 0.8, 0.8, 1},
 //                        {0.2, 0.2, 0.6, 1},
 //                        {1, 0.2, 0, 0.8},
 //                        {1, 0.5, 0.4, 0},
-                {0.2, 0.6, 0.2, 1}});
-
-        Matrix b = a.copy();
-        b.mergeRows(1, 3);
-        return String.format("%s\n\n%s", a, b);
+//                {0.2, 0.6, 0.2, 1}});
+//
+//        Matrix b = a.copy();
+//        b.mergeRows(1, 3);
+//        return String.format("%s\n\n%s", a, b);
     }
 
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.text.DecimalFormat;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -76,5 +76,41 @@ public class K {
                 this.m.stream().map(String::new).collect(Collectors.toList()),
                 this.i.copy()
         );
+    }
+
+    /**
+     * Merge objects
+     */
+    public void mergeObjects(int... indexes) {
+        this.i.mergeRows(indexes);
+        this.mergeG(indexes);
+    }
+
+    /**
+     * Merge properties
+     */
+    public void mergeProps(int... indexes) {
+        this.i.mergeRows(indexes);
+        this.mergeG(indexes);
+    }
+
+    private void mergeG(int... indexes) {
+        mergeStringsArrays(g, indexes);
+    }
+
+    private void mergeM(int... indexes) {
+        mergeStringsArrays(m, indexes);
+    }
+
+    private void mergeStringsArrays(List<String> list, int... indexes) {
+        Arrays.sort(indexes);
+        List<String> strings = new ArrayList<>();
+        for (int i : indexes) {
+            strings.add(list.get(i));
+        }
+        Collections.sort(strings);
+        String result = String.join(" | ", strings);
+        list.set(indexes[0], result);
+        list = list.stream().filter(item -> item.equals(strings.get(0)) || strings.stream().noneMatch(item::equals)).collect(Collectors.toList());
     }
 }
