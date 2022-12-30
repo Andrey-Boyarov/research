@@ -95,6 +95,14 @@ public class Matrix {
     }
 
     public void mergeRows(int... indexes) {
+        Arrays.sort(indexes);
+        for (List<Double> col : values) {
+            for (int i = indexes.length - 1; i > 0; i--) {
+                col.set(indexes[0], col.get(indexes[0]) + col.remove(indexes[i]));
+            }
+            col.set(indexes[0], col.get(indexes[0]) / indexes.length);
+        }
+        rowNum -= indexes.length - 1;
     }
 
 

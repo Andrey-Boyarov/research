@@ -83,7 +83,7 @@ public class TestController {
                 {0.2, 0.6, 0.2, 1}});
 
         Matrix b = a.copy();
-        b.mergeCols(1, 3, 2);
+        b.mergeRows(1, 3);
         return String.format("%s\n\n%s", a, b);
     }
 
