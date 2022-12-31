@@ -70,7 +70,7 @@ public class TestController {
 
 //        k.mergeObjects(1, 3, 4);
 
-        String cString = k.autoMergeColumns().toString();
+        String cString = k.transpose().toString();
 
 //        String cString = algorithmUtils.getConcepts(k).toString();
 

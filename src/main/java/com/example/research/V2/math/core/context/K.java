@@ -78,6 +78,15 @@ public class K {
         );
     }
 
+    public K transpose() {
+        i.transpose();
+        List<String> temp;
+        temp = g;
+        g = m;
+        m = temp;
+        return this;
+    }
+
     /**
      * Merge objects
      */

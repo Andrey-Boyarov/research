@@ -57,6 +57,14 @@ public class Matrix {
         this.values = list;
     }
 
+    public Matrix transpose() {
+        Matrix ct = this.copyTransposed();
+        this.values = ct.values;
+        this.colNum = ct.colNum;
+        this.rowNum = ct.rowNum;
+        return this;
+    }
+
     public Matrix copyTransposed() {
         List<List<Double>> newValues = new ArrayList<>();
         for (int i = 0; i < rowNum; i++) {
