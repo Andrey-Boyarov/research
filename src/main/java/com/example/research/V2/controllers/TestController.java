@@ -55,22 +55,22 @@ public class TestController {
                 Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
                 Arrays.asList("S", "A", "I", "Sp"),
                 new Matrix(new double[][]{
-                        {1, 0.4, 0.2, 0},
-                        {1, 0.4, 0.6, 0},
+                        {1, 0.4, 0.3, 0},
+                        {1, 0.4, 0.5, 0},
                         {1, 0.8, 0.8, 0},
                         {0, 0.8, 0.8, 1},
 //                        {0.2, 0.2, 0.6, 1},
 //                        {1, 0.2, 0, 0.8},
 //                        {1, 0.5, 0.4, 0},
-                        {0.2, 0.6, 0.2, 1}})
+                        {0.2, 0.6, 0.5, 1}})
         );
         String kString = k.toString();
 
 //        String vString = k.validate().toString();
 
-        k.mergeObjects(1, 3, 4);
+//        k.mergeObjects(1, 3, 4);
 
-        String cString = k.toString();
+        String cString = k.autoMergeColumns().toString();
 
 //        String cString = algorithmUtils.getConcepts(k).toString();
 

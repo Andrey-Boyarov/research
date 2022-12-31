@@ -57,6 +57,23 @@ public class Matrix {
         this.values = list;
     }
 
+    public Matrix copyTransposed() {
+        List<List<Double>> newValues = new ArrayList<>();
+        for (int i = 0; i < rowNum; i++) {
+            newValues.add(new ArrayList<>());
+        }
+        for (int i = 0; i < colNum; i++) {
+            for (int j = 0; j < rowNum; j++) {
+                newValues.get(j).add(values.get(i).get(j));
+            }
+        }
+        return new Matrix(newValues).copy();
+    }
+
+    public List<List<Double>> getValues() {
+        return values;
+    }
+
     public Double get(int row, int col) {
         return values.get(col).get(row);
     }
@@ -92,6 +109,15 @@ public class Matrix {
                 ).collect(Collectors.toList())
         ).collect(Collectors.toList());
         return new Matrix(values);
+    }
+
+
+    public void mergeCols(List<Double> list1, List<Double> list2) {
+        for (int i = 0; i < list1.size(); i++) {
+            list1.set(i, (list1.get(i) + list2.get(i)) / 2);
+        }
+        values.remove(list2);
+        colNum--;
     }
 
     public void mergeRows(int... indexes) {
@@ -130,4 +156,24 @@ public class Matrix {
         double range = max - min;
         return list.stream().map(v -> v = (v - min) / range).collect(Collectors.toList());
     };
+
+    /**
+     * Decide if dots are close or not
+     */
+    public static boolean areNearEnough(List<Double> point1, List<Double> point2, double rangeAllowed) {
+        if (point1.size() != point2.size())
+            new RuntimeException("Incompatible points (their dimentions are unequal").printStackTrace();
+        return range(point1, point2) < rangeAllowed;
+    }
+
+    private static Double range(List<Double> point1, List<Double> point2) {
+        if (point1.size() != point2.size())
+            new RuntimeException("Incompatible points (their dimentions are unequal").printStackTrace();
+        Double total = 0D;
+        for (int i = 0; i < point1.size(); i++) {
+            total += Math.pow(point1.get(i) - point2.get(i), 2);
+        }
+        total = Math.sqrt(total);
+        return total;
+    }
 }
