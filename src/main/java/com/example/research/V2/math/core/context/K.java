@@ -48,6 +48,14 @@ public class K {
         return this;
     }
 
+    public K autoShrink() {
+        this.autoMergeColumns();
+        this.transpose();
+        this.autoMergeColumns();
+        this.transpose();
+        return this;
+    }
+
     public String toString() {
         StringBuilder result = new StringBuilder();
 
@@ -107,14 +115,19 @@ public class K {
         mergeProps(indexes.stream().mapToInt(i->i).toArray());
     }
 
-    public K autoMergeColumns() {
+    /**
+     * Auto merge of columns
+     * @return true if this object changed, false otherwise
+     */
+    public boolean autoMergeColumns() {
         List<List<Integer>> indexesLists = getSimilarColumns();
         clearFromRedundant(indexesLists);
         setStraightBorders(indexesLists);
-        for (List<Integer> indexes : indexesLists) {
-            mergeColumns(indexes);
+        List<List<List<Double>>> cols = indexesLists.stream().map(il -> il.stream().map(in -> i.getValues().get(in)).collect(Collectors.toList())).collect(Collectors.toList());
+        for (List<List<Double>> indexes : cols) {
+            mergeColumns(indexes.stream().map(t -> i.getValues().indexOf(t)).collect(Collectors.toList()));
         }
-        return this;
+        return indexesLists.size() > 0;
     }
 
     public List<List<Integer>> getSimilarColumns() {
@@ -141,6 +154,7 @@ public class K {
                 deleteValueCopies(list, upperList, val);
             }
         }
+        list.removeIf(l -> l.size() < 2);
         return list;
     }
 

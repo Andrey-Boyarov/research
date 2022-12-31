@@ -70,7 +70,7 @@ public class TestController {
 
 //        k.mergeObjects(1, 3, 4);
 
-        String cString = k.transpose().toString();
+        String cString = k.autoShrink().toString();
 
 //        String cString = algorithmUtils.getConcepts(k).toString();
 
