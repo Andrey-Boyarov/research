@@ -188,8 +188,4 @@ public class K {
         newList.removeAll(strings);
         m = newList;
     }
-
-    private void mergeStringsArrays(List<String> list, int... indexes) {
-
-    }
 }
