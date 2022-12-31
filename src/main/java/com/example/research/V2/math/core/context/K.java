@@ -123,9 +123,9 @@ public class K {
         List<List<Integer>> indexesLists = getSimilarColumns();
         clearFromRedundant(indexesLists);
         setStraightBorders(indexesLists);
-        List<List<List<Double>>> cols = indexesLists.stream().map(il -> il.stream().map(in -> i.getValues().get(in)).collect(Collectors.toList())).collect(Collectors.toList());
-        for (List<List<Double>> indexes : cols) {
-            mergeColumns(indexes.stream().map(t -> i.getValues().indexOf(t)).collect(Collectors.toList()));
+        List<List<String>> cols = indexesLists.stream().map(il -> il.stream().map(in -> m.get(in)).collect(Collectors.toList())).collect(Collectors.toList());
+        for (List<String> indexes : cols) {
+            mergeColumns(indexes.stream().map(t -> m.indexOf(t)).collect(Collectors.toList()));
         }
         return indexesLists.size() > 0;
     }

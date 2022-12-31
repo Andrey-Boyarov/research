@@ -52,16 +52,16 @@ public class TestController {
 //        return result;
 
         K k = new K(
-                Arrays.asList("AP", "DN", "IM", "SR", /*"KB",*/ /*"ZG",*/ /*"TZ",*/ "ZP"),
+                Arrays.asList("AP", "DN", "IM", "SR", "KB", "ZG", "TZ", "ZP"),
                 Arrays.asList("S", "A", "I", "Sp"),
                 new Matrix(new double[][]{
                         {1, 0.4, 0.3, 0},
                         {1, 0.4, 0.5, 0},
                         {1, 0.8, 0.8, 0},
                         {0, 0.8, 0.8, 1},
-//                        {0.2, 0.2, 0.6, 1},
-//                        {1, 0.2, 0, 0.8},
-//                        {1, 0.5, 0.4, 0},
+                        {0.2, 0.2, 0.6, 1},
+                        {1, 0.2, 0, 0.8},
+                        {1, 0.5, 0.4, 0},
                         {0.2, 0.6, 0.5, 1}})
         );
         String kString = k.toString();
@@ -70,11 +70,11 @@ public class TestController {
 
 //        k.mergeObjects(1, 3, 4);
 
-        String cString = k.autoShrink().toString();
+        String shString = k.autoShrink().toString();
 
-//        String cString = algorithmUtils.getConcepts(k).toString();
+        String cString = algorithmUtils.getConcepts(k).toString();
 
-        return String.format("%S\n%S", kString, cString);
+        return String.format("%S\n%S\n%d\n%d\n%s", kString, shString, k.getI().getColNum(), k.getI().getRowNum(), cString);
 
 
 //        Matrix a = new Matrix(new double[][]{
