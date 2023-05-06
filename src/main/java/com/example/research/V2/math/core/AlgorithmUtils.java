@@ -21,7 +21,7 @@ public class AlgorithmUtils {
                 result.add(fc);
             }
             if (iter % 1000000 == 0) System.out.println(iter);
-//            System.out.println(counter);
+            System.out.println(counter);
         } while (increaseCounterV(counter));
         result.remove(0);
         result.remove(result.size() - 1);
@@ -37,10 +37,10 @@ public class AlgorithmUtils {
         context.getG().forEach(sub -> {
             newVolumes.add(new Volume(sub, operationB(context, contents, sub)));
         });
-        System.out.print(1);
-        System.out.println(volume);
-        System.out.print(2);
-        System.out.println(newVolumes);
+//        System.out.print(1);
+//        System.out.println(volume);
+//        System.out.print(2);
+//        System.out.println(newVolumes);
         if (equalListsOfT(volume, newVolumes)) {
             Concept concept = new Concept(contents, volume);
             System.out.printf("Concept received: %s%n", concept);

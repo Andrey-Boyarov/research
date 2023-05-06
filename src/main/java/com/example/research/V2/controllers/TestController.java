@@ -52,21 +52,21 @@ public class TestController {
 //        return result;
 
         K k = new K(
-                Arrays.asList("AP", "DN", "IM", "SR", "KB", "ZG", "TZ", "ZP"),
-                Arrays.asList("S", "A", "I", "Sp"),
+                Arrays.asList("Титаник", "Мстители", "Джентельмены", "Большой куш", "Джон Уик", "Тайна Коко", "Интерстеллар", "Начало"),
+                Arrays.asList("Бюджет", "Сборы", "Кинопоиск", "IMDB"),
                 new Matrix(new double[][]{
-                        {1, 0.4, 0.3, 0},
-                        {1, 0.4, 0.5, 0},
-                        {1, 0.8, 0.8, 0},
-                        {0, 0.8, 0.8, 1},
-                        {0.2, 0.2, 0.6, 1},
-                        {1, 0.2, 0, 0.8},
-                        {1, 0.5, 0.4, 0},
-                        {0.2, 0.6, 0.5, 1}})
+                        {200, 2.22, 8.4, 7.9},
+                        {220, 1.52, 7.9, 8.0},
+                        {22, 0.1, 8.5, 7.8},
+                        {10, 0.1, 8.5, 8.2},
+                        {20, 0.1, 7.0, 7.4},
+                        {175, 0.8, 8.7, 8.4},
+                        {165, 0.7, 8.6, 8.6},
+                        {160, 0.8, 8.7, 8.8}})
         );
         String kString = k.toString();
 
-//        String vString = k.validate().toString();
+        String vString = k.validate().toString();
 
 //        k.mergeObjects(1, 3, 4);
 
@@ -74,7 +74,7 @@ public class TestController {
 
         String cString = algorithmUtils.getConcepts(k).toString();
 
-        return String.format("%S\n%S\n%d\n%d\n%s", kString, shString, k.getI().getColNum(), k.getI().getRowNum(), cString);
+        return String.format("%S\n%S\n%S\n%d\n%d\n%s", kString, vString, shString, k.getI().getColNum(), k.getI().getRowNum(), cString);
 
 
 //        Matrix a = new Matrix(new double[][]{
