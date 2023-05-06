@@ -42,11 +42,7 @@ public class Matrix {
         List<List<Double>> list = new ArrayList<>();
         for (int i = 0; i < values[0].length; i++) list.add(new ArrayList<>());
 
-        for (double[] value : values) {
-            for (int j = 0; j < values[0].length; j++) {
-                list.get(j).add(value[j]);
-            }
-        }
+        for (double[] value : values) for (int j = 0; j < values[0].length; j++) list.get(j).add(value[j]);
 
         rowNum = list.get(0).size();
         for (List<Double> col : list) {
@@ -162,6 +158,7 @@ public class Matrix {
         double max = Collections.max(list);
         double min = Collections.min(list);
         double range = max - min;
+        if (range == 0.0) return list;
         return list.stream().map(v -> v = (v - min) / range).collect(Collectors.toList());
     };
 
