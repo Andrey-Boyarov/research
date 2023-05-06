@@ -59,7 +59,7 @@ public class K {
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        DecimalFormat formatter = new DecimalFormat("0.00");
+        DecimalFormat formatter = new DecimalFormat("0.0");
 
 //        result.append("\t");
         for (String s : m) {
