@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/fca")
 @RequiredArgsConstructor
 public class TestController {
 
     private final AlgorithmUtils algorithmUtils;
     private final ClusteringUtils clusteringUtils;
 
-    @GetMapping("/launch")
+    @GetMapping("/test")
     public String test() {
         double [][] healthyValues = {
                 {1, 0.4, 0.2, 0},
