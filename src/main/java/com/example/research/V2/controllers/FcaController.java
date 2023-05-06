@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/fca")
 @RequiredArgsConstructor
-public class TestController {
+public class FcaController {
 
     private final AlgorithmUtils algorithmUtils;
     private final ClusteringUtils clusteringUtils;
