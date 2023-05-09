@@ -180,7 +180,7 @@ public class K {
      * Range in which dots are considered as being close to each other
      */
     private double getRangeAllowed() {
-        return 1D - 1D / Math.sqrt(getI().getRowNum());
+        return 1D - 1D / Math.pow(getI().getColNum(), 1D / getI().getColNum());
     }
 
 
