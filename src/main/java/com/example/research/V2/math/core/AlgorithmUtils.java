@@ -21,7 +21,7 @@ public class AlgorithmUtils {
                 result.add(fc);
             }
             if (iter % 1000000 == 0) System.out.println(iter);
-            System.out.println(counter);
+//            System.out.println(counter);
         } while (increaseCounterV(counter));
         result.remove(0);
         result.remove(result.size() - 1);
@@ -80,7 +80,7 @@ public class AlgorithmUtils {
 
     public Double operationA(K context, List<Volume> vol, String prop){
         return context.getG()
-                .stream()
+                .parallelStream()
                 .map(sub -> operationAInternal(context, vol, sub, prop))
                 .reduce(this::lukConjunction)
                 .orElse(null);
@@ -88,7 +88,7 @@ public class AlgorithmUtils {
 
     public Double operationB(K context, List<Content> con, String sub){
         return context.getM()
-                .stream()
+                .parallelStream()
                 .map(prop -> operationBInternal(context, con, sub, prop))
                 .reduce(this::lukConjunction)
                 .orElse(null);
